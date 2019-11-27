@@ -1,6 +1,7 @@
 from skimage.exposure import rescale_intensity
 import numpy as np
 import cv2
+from rgb_to_gray import RgbToGray
 
 class Convolution:
     def __init__(self, img, kernel_name='sharpen'):
@@ -28,6 +29,11 @@ class Convolution:
             [0, 0, 0],
             [1, 2, 1]), dtype="int")
 
+        gaussian = np.array((
+            [1, 2, 1],
+            [2, 4, 2],
+            [1, 2, 1]), dtype="float") * (1.0/16.0)
+
         smallBlur = np.ones((7, 7), dtype="float") * (1.0 / (7 * 7))
         largeBlur = np.ones((21, 21), dtype="float") * (1.0 / (21 * 21))
 
@@ -37,7 +43,8 @@ class Convolution:
             "sharpen": sharpen,
             "laplacian": laplacian,
             "sobel_x": sobelX,
-            "sobel_y": sobelY
+            "sobel_y": sobelY,
+            "gaussian": gaussian
         }
 
     def run(self):
