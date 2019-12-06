@@ -12,7 +12,6 @@ class Threshold:
         for h in range(0, iH):
             for w in range(0, iW):
                 intensity = image[h, w]
-                print(intensity)
                 if intensity <= t:
                     x = 0
                 else:
