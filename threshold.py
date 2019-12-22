@@ -3,16 +3,18 @@ import numpy as np
 
 
 class Threshold:
+    def __init__(self, img, th=45):
+        self.img = img
+        self.th = th
 
-    @staticmethod
-    def run(image, t=45):
-        (iH, iW) = image.shape[:2]
+    def run(self):
+        (iH, iW) = self.img.shape[:2]
         output = np.zeros((iH, iW), dtype="float32")
 
         for h in range(0, iH):
             for w in range(0, iW):
-                intensity = image[h, w]
-                if intensity <= t:
+                intensity = self.img[h, w]
+                if intensity <= self.th:
                     x = 0
                 else:
                     x = 255
